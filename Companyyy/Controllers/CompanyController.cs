@@ -1,7 +1,6 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Service.Dto;
-using Service.Services;
+using Service.Interfaces;
 
 namespace H_M_4_sep__2_.Controllers
 {
@@ -9,9 +8,9 @@ namespace H_M_4_sep__2_.Controllers
     [ApiController]
     public class CompanyController : ControllerBase
     {
-        public CompanyRepository companyRepository { get; set; }
+        public ICompanyRepository companyRepository { get; set; }
 
-        public CompanyController(CompanyRepository companyRepository)
+        public CompanyController(ICompanyRepository companyRepository)
         {
             this.companyRepository = companyRepository;
         }

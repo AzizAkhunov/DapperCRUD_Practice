@@ -2,12 +2,13 @@
 using Domain.Entyties;
 using Npgsql;
 using Service.Dto;
+using Service.Interfaces;
 
 namespace Service.Services
 {
-    public class CompanyRepository
+    public class CompanyRepository : ICompanyRepository
     {
-        public static string connectionString = "Server = localhost;Port=5432;User Id=postgres;Password = password;Database=DapperPractics";
+        public static string connectionString = "Server = localhost;Port=5432;User Id=postgres;Password = 56767655;Database=Companyyy";
         public async Task CreateAsync(CreateCompanyDto companyDto)
         {
             using (var db = new NpgsqlConnection(connectionString))
@@ -56,7 +57,7 @@ namespace Service.Services
             using (var db = new NpgsqlConnection(connectionString))
             {
                 var sqlQuery = $"UPDATE public.\"Company\" SET \"Name\"=@Name WHERE \"Id\" = {id};";
-                var result = await db.QueryAsync<Employee>(sqlQuery, companyDto);
+                var result = await db.QueryAsync<Company>(sqlQuery, companyDto);
                 if (result != null)
                 {
                     return "Updated";

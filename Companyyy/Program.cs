@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Service.DatabaseContext;
+using Service.Interfaces;
 using Service.Services;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -11,11 +12,11 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddTransient<CompanyRepository, CompanyRepository>();
+builder.Services.AddTransient<ICompanyRepository, CompanyRepository>();
+builder.Services.AddTransient<IStaffRepository, StaffRepository>();
+builder.Services.AddTransient<IEmployeeRepository, EmployeeRepository>();
 
 
-//builder.Services.AddDbContext<AppDbContext>(options =>
-//        options.UseNpgsql(builder.Configuration.GetConnectionString("PostConnection")));
 
 
 var app = builder.Build();
